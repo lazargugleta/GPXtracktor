@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.0" creator="DOD video to GPX - by lazar.gugleta@gmail.com" xmlns="http://www.topografix.com/GPX/1/0">
+  <trk>
+    <name>/home/chieflaki/Dropbox/LAKI/Git Projects/GPXtracktor/test videos/2017_1020_161245_003.MOV</name>
+    <trkseg>
+      <trkpt lat="45.2592854" lon="19.8382652">
+        <time>2017-10-20T15:12:45.6Z</time>
+        <speed>0.0</speed>
+      </trkpt>
+      <trkpt lat="45.2592854" lon="19.8382652">
+        <time>2017-10-20T15:12:45.6Z</time>
+        <speed>0.0</speed>
+      </trkpt>
+    <desc>Max Speed:0.00km/h at time:15:12:45.6</desc>
+    </trkseg>
+  </trk>
+</gpx>
