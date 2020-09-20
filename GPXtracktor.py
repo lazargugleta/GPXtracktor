@@ -30,6 +30,7 @@ progress = Progressbar(master, orient = HORIZONTAL,
 progress['value'] = 0
 
 def pronadji(finalLabel):
+    finalLabel.pack_forget()
     n_chunk = 400 # each GPS data item is 32 bytes
     from tkinter.filedialog import askopenfilenames
     filenames = askopenfilenames()
@@ -55,10 +56,6 @@ def pronadji(finalLabel):
     sleep(0.5)
 
     nr_files = len(filenames)
-
-    if (nr_files >= 1):
-        finalLabel.pack_forget()
-    
 
     for filename in filenames:
         
