@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['GPXtracktor.pyw'],
-             pathex=['/home/chieflaki/Dropbox/GPXtracktor'],
+a = Analysis(['GPXtracktor.py'],
+             pathex=['/home/chieflaki/Dropbox/LAKI/Git Projects/GPXtracktor'],
              binaries=[],
              datas=[],
              hiddenimports=[],

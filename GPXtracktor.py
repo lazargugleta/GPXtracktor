@@ -5,6 +5,7 @@ except ImportError:
     # for Python3
     from tkinter import * 
     from tkinter.ttk import *
+    from tkinter import Label
 #!/usr/bin/python
 #Extract GPS data from video file of DOD car dashcam to GPX file.
 #all the libraries used for the project
@@ -14,10 +15,10 @@ import struct
 import binascii
 from time import sleep
 from termcolor import colored
-
+from functools import partial
 
 master = Tk()
-master.geometry("250x150")
+master.geometry("350x150")
 
 master.title("GPXtractor".center(10))
 
@@ -28,7 +29,7 @@ progress = Progressbar(master, orient = HORIZONTAL,
 #give starting value
 progress['value'] = 0
 
-def pronadji():
+def pronadji(finalLabel):
     n_chunk = 400 # each GPS data item is 32 bytes
     from tkinter.filedialog import askopenfilenames
     filenames = askopenfilenames()
@@ -37,9 +38,7 @@ def pronadji():
     #The GPS data segment start with freeGPS('\x66\x72\x65\x65\x47\x50\x53')
     data_prefix=b'freeGPS'
     item_prefix=b'$S'   #'\x24\x53'
-
     
-    master.update_idletasks()
 
     version =    '<?xml version="1.0" encoding="UTF-8"?>\n'
     version+=    '<gpx version="1.0" creator="DOD video to GPX - by lazar.gugleta@gmail.com" '
@@ -52,10 +51,14 @@ def pronadji():
     track_desc ='    <desc>Max Speed:{:.2f}km/h at time:{}</desc>\n'
     track_end=  '    </trkseg>\n  </trk>\n</gpx>\n'
 
-    progress['value'] = 40
+    progress['value'] = 0
     sleep(0.5)
 
     nr_files = len(filenames)
+
+    if (nr_files >= 1):
+        finalLabel.pack_forget()
+    
 
     for filename in filenames:
         
@@ -112,21 +115,26 @@ def pronadji():
                 gpx_file.write(track_desc.format(maxSpeed,maxTime))
                 gpx_file.write(track_end)
                 gpx_file.close()
-                progress['value'] += 60/nr_files
+                progress['value'] += 100/nr_files
                 sleep(0.25)
                 print("Max Speed:{:.2f}km/h".format(maxSpeed))
                 print("Time:"+str(maxTime))
                 print(colored("Video complete!", "green"))
 
+    if (nr_files >= 1):
+        finalLabel.pack()
+
                 
 #visual defines
 
+a = Label(master, text="Obrada zavrsena!", bg="red")
+
 progress.pack(pady = 10)
 
-w = Label(master, text="Odaberi video da extract-ujes GPX file",width = 100)
+w = Label(master, text="Odaberi jedan ili vise videa da extract-ujes GPX file",width = 120)
 w.pack()
 
-b = Button(master, text="Izaberi video", command=pronadji,width = 12)
+b = Button(master, text="Izaberi", command=partial(pronadji, a),width = 10)
 b.pack()
 
 a = Label(master, text="Autor: Lazar Gugleta")
