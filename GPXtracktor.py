@@ -7,6 +7,7 @@ except ImportError:
     from tkinter.ttk import *
 #!/usr/bin/python
 #Extract GPS data from video file of DOD car dashcam to GPX file.
+#all the libraries used for the project
 import os
 import mmap
 import struct
